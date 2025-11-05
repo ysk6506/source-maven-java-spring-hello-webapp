@@ -9,7 +9,7 @@ pipeline {
 		agent any
 		steps {
 			git branch: 'main',
-			url: 'https://github.com/ysk6506/git-test.git'
+			url: 'https://github.com/ysk6506/source-maven-java-spring-hello-webapp.git'
 		}
 	}
 	stage('Build') {
