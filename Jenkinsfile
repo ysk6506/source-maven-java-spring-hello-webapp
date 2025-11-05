@@ -25,14 +25,14 @@ pipeline {
 	stage('Image Tag'){
 		agent any
 		steps {
-			sh 'docker image tag tomcat:hello ysk/tomcat:latest'
+			sh 'docker image tag tomcat:hello ysk6506/tomcat:latest'
 		}
 	}
 	stage('Image Push'){
 		agent any
 		steps {
 			withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
-				sh 'docker image push ysk/tomcat:latest'
+				sh 'docker image push ysk6506/tomcat:latest'
 			}
 		}
 	}
@@ -41,7 +41,7 @@ pipeline {
 			docker { image 'docker:dind' }
 		}
 		steps {
-			sh 'docker -H tcp://0.0.0.0:2375 run -d --name webserver -p 80:8080 ysk/tomcat:latest'
+			sh 'docker -H tcp://0.0.0.0:2375 run -d --name webserver -p 80:8080 ysk6506/tomcat:latest'
 		}
 	}
     }
