@@ -25,8 +25,15 @@ pipeline {
 	stage('Image Tag'){
 		agent any
 		steps {
-			sh 'docker image tag tomcat:hello ysk/tomcat:v1'
 			sh 'docker image tag tomcat:hello ysk/tomcat:latest'
+		}
+	}
+	stage('Image Push'){
+		agent any
+		steps {
+			withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
+				sh 'docker push ysk/tomcat:latest'
+			}
 		}
 	}
 	stage('Running Container') {
