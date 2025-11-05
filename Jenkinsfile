@@ -32,7 +32,7 @@ pipeline {
 		agent any
 		steps {
 			withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
-				sh 'docker push ysk/tomcat:latest'
+				sh 'docker iamge push ysk/tomcat:latest'
 			}
 		}
 	}
