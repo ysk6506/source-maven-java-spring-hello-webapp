@@ -29,15 +29,15 @@ pipeline {
 			sh 'docker image tag tomcat:hello ysk/tomcat:latest'
 		}
 	}
-	stage('Image Push'){
-		agent any
-		steps {
-			withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
-				sh 'docker image push ysk/tomcat:${env.BUILD_NUMBER}'
-				sh 'docker image push ysk/tomcat:latest'
-			}
-		}
-	}
+#	stage('Image Push'){
+#		agent any
+#		steps {
+#			withDockerRegistry(credentialsId: 'docker-hub-token', url: 'https://index.docker.io/v1/') {
+#				sh "docker push ysk/tomcat:${env.BUILD_NUMBER}"
+#				sh 'docker push ysk/tomcat:latest'
+#			}
+#		}
+#	}
 	stage('Running Container') {
 		agent {
 			docker { image 'docker:dind' }
